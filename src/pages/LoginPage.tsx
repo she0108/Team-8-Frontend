@@ -4,10 +4,11 @@ import {
   ButtonColorVariant,
   Text,
   TextField,
+  TextFieldType,
   Typography,
   VStack,
 } from "@channel.io/bezier-react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Login() {
@@ -63,7 +64,7 @@ function Login() {
           />
           <TextField
             placeholder="비밀번호"
-            type="password"
+            type={TextFieldType.Password}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />

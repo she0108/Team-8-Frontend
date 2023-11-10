@@ -34,7 +34,7 @@ export type ReviewType = {
   star?: number;
   good_review?: string;
   bad_review?: string;
-  created_at?: any;
+  created_at?: string;
   user_id?: number;
   user_name?: string;
 };
@@ -46,7 +46,7 @@ export type LectureInfoType = {
   language: string;
   title: string;
   original_price?: string;
-  current_price?: any;
+  current_price?: number;
   introduction?: string;
   link?: string;
   thumbnail?: string;
@@ -179,7 +179,7 @@ function DetailPage() {
                   <Rating
                     value={rating}
                     size="large"
-                    onChange={(event, newValue) => {
+                    onChange={(_, newValue) => {
                       console.log(rating);
                       setRating(newValue!);
                     }}

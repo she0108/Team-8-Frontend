@@ -1,6 +1,10 @@
-import React from "react";
+import { ReactNode } from "react";
 
-function DetailItem(props) {
+interface DetailItemProps {
+  children: ReactNode;
+}
+
+function DetailItem(props: DetailItemProps): JSX.Element {
   return (
     <div
       style={{

@@ -3,10 +3,11 @@ import {
   Button,
   Text,
   TextField,
+  TextFieldType,
   Typography,
   VStack,
 } from "@channel.io/bezier-react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function SignUp() {
@@ -65,13 +66,13 @@ function SignUp() {
             placeholder="비밀번호"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            type="password"
+            type={TextFieldType.Password}
           />
           <TextField
             placeholder="비밀번호 확인"
             value={passwordCheck}
             onChange={(e) => setPasswordCheck(e.target.value)}
-            type="password"
+            type={TextFieldType.Password}
           />
         </div>
         {/* </VStack> */}

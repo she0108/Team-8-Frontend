@@ -1,6 +1,5 @@
 import { PersonIcon, SearchIcon } from "@channel.io/bezier-icons";
 import { HStack, Text, Icon, IconSize } from "@channel.io/bezier-react";
-import React from "react";
 import { Link } from "react-router-dom";
 
 function Footer() {
