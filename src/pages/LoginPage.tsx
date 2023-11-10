@@ -14,7 +14,14 @@ function Login() {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   return (
-    <div>
+    <div
+      style={{
+        height: "90vh",
+        overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       <VStack
         justify="center"
         align="center"
@@ -23,12 +30,12 @@ function Login() {
         <Text typo={Typography.Size24}>서비스명</Text>
         <VStack style={{ gap: "10px" }}>
           <TextField
-            placeholder="아이디를 입력해주세요"
+            placeholder="아이디"
             value={id}
             onChange={(e) => setId(e.target.value)}
           />
           <TextField
-            placeholder="비밀번호를 입력해주세요"
+            placeholder="비밀번호"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
