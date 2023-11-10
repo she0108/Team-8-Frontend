@@ -25,12 +25,20 @@ function Login() {
           "Content-Type": "application/json",
         },
       }
-    ).then((response) => {
-      if (response.status <= 200) {
+    )
+      .then((response) => {
+        if (response.status > 200) {
+          // localStorage.setItem("isLogin", "true");
+          // window.location.href = "/home";
+          alert("로그인에 실패했습니다. \n다시 시도해주세요.");
+        }
+        return response.json();
+      })
+      .then((result) => {
+        localStorage.setItem("user_id", result.user_id);
         localStorage.setItem("isLogin", "true");
         window.location.href = "/home";
-      }
-    });
+      });
   };
   return (
     <div
