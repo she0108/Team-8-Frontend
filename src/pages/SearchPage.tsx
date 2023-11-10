@@ -12,12 +12,23 @@ import {
   TextFieldSize,
   TextFieldType,
 } from "@channel.io/bezier-react";
-import areaArray from "./../constant/area";
-import stackArray from "./../constant/stack";
+import areaArray from "@/constant/area";
+import stackArray from "@/constant/stack";
+import difficultyArray from "@/constant/difficulty";
 import useFilterStore from "@/store/filterStore";
+import FilterDifficultyButton from "@/components/FilterDifficultyButton";
 
 const SearchPage: React.FC = () => {
-  const { area, setArea, stack, setStack, price, setPrice } = useFilterStore();
+  const {
+    area,
+    setArea,
+    stack,
+    setStack,
+    difficulty,
+    setDifficulty,
+    price,
+    setPrice,
+  } = useFilterStore();
 
   return (
     <div
@@ -50,12 +61,15 @@ const SearchPage: React.FC = () => {
           display: "flex",
           flexDirection: "row",
           gap: 8,
-          overflow: "scrollX",
           flexShrink: 0,
+          flexWrap: "nowrap",
+          whiteSpace: "nowrap",
+          overflowX: "scroll",
         }}
       >
         <FilterAreaButton />
         <FilterStackButton />
+        <FilterDifficultyButton />
         <FilterPriceButton />
       </div>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 8, flexShrink: 0 }}>
@@ -74,6 +88,11 @@ const SearchPage: React.FC = () => {
         {(price[0] > 0 || price[1] < 999999) && (
           <Tag onDelete={() => setPrice(0, 999999)}>
             {price[0]} ~ {price[1]}
+          </Tag>
+        )}
+        {difficulty != 0 && (
+          <Tag onDelete={() => setDifficulty(0)}>
+            {difficultyArray[difficulty]}
           </Tag>
         )}
       </div>
