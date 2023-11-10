@@ -1,8 +1,14 @@
 import { TriangleDownIcon } from "@channel.io/bezier-icons";
-import { Button, ButtonColorVariant, ButtonStyleVariant, HStack, StackItem } from "@channel.io/bezier-react";
-import React, { useState } from "react";
+import {
+  Button,
+  ButtonColorVariant,
+  ButtonStyleVariant,
+  HStack,
+  StackItem,
+} from "@channel.io/bezier-react";
+import { useState } from "react";
 const OpenDropdownButton = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
@@ -14,19 +20,20 @@ const OpenDropdownButton = () => {
         styleVariant={ButtonStyleVariant.Tertiary}
         onClick={() => setIsOpen(true)}
       />
-        Dropdown content
+      Dropdown content
     </div>
-  )
-}
+  );
+};
 function Test() {
-  return <div>
-    <HStack justify="center">
-      <StackItem>
-        <OpenDropdownButton />
-      </StackItem>
-    </HStack>
-
-  </div>;
+  return (
+    <div>
+      <HStack justify="center">
+        <StackItem>
+          <OpenDropdownButton />
+        </StackItem>
+      </HStack>
+    </div>
+  );
 }
 
 export default Test;

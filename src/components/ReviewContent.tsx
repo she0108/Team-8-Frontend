@@ -1,4 +1,3 @@
-import React from "react";
 import Rating from "@mui/material/Rating";
 import { Icon, Text, Typography } from "@channel.io/bezier-react";
 import {
