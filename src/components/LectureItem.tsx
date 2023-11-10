@@ -10,7 +10,13 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 interface LectureItemProps {
-  lecture: object;
+  lecture: {
+    lecture_id: number;
+    thumbnail: string;
+    title: string;
+    keyword: string;
+    rating: number;
+  };
 }
 
 const LectureItem: React.FC<LectureItemProps> = ({ lecture }) => {
@@ -50,14 +56,15 @@ const LectureItem: React.FC<LectureItemProps> = ({ lecture }) => {
             lecture.keyword
               .replace("[", "")
               .replace("]", "")
-              .replaceAll("'", "")
               .split(",")
               .slice(0, 2)
               .map((keyword: string, index: number) => (
-                <Tag key={index}>{keyword}</Tag>
+                <Tag key={index}>
+                  {keyword.replace("'", "").replace("'", "")}
+                </Tag>
               ))}
           <Badge icon={StarFilledIcon} variant={TagBadgeVariant.Blue}>
-            4.5 (999+)
+            {lecture.rating.toFixed(1)}
           </Badge>
         </div>
       </div>

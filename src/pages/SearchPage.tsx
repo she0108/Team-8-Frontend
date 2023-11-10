@@ -19,6 +19,13 @@ import useFilterStore from "@/store/filterStore";
 import FilterDifficultyButton from "@/components/FilterDifficultyButton";
 import { useEffect, useState } from "react";
 
+interface Lecture {
+  title: string;
+  keyword: string;
+  stacks: string;
+  difficulty: number;
+}
+
 const SearchPage: React.FC = () => {
   const {
     area,
@@ -56,11 +63,11 @@ const SearchPage: React.FC = () => {
   useEffect(() => {
     let filtered = [...lectures];
     //검색어 필터링
-    filtered = filtered.filter((x) => x.title.includes(searchTerm));
+    filtered = filtered.filter((x: Lecture) => x.title.includes(searchTerm));
     // 분야(keyword) 필터링
     const selectedArea = areaArray.filter((_, index) => area[index]);
     if (selectedArea.length > 0) {
-      filtered = filtered.filter((x) => {
+      filtered = filtered.filter((x: Lecture) => {
         for (const s of selectedArea) {
           if (x.keyword && x.keyword.includes(s)) return true;
         }
@@ -69,7 +76,7 @@ const SearchPage: React.FC = () => {
     // 기술스택 필터링
     const selectedStack = stackArray.filter((_, index) => stack[index]);
     if (selectedStack.length > 0) {
-      filtered = filtered.filter((x) => {
+      filtered = filtered.filter((x: Lecture) => {
         for (const s of selectedStack) {
           if (x.stacks && x.stacks.includes(s)) return true;
         }
@@ -77,10 +84,10 @@ const SearchPage: React.FC = () => {
     }
     // 난이도 필터링
     if (difficulty != 0) {
-      filtered = filtered.filter((x) => x.difficulty == difficulty);
+      filtered = filtered.filter((x: Lecture) => x.difficulty == difficulty);
     }
     setFilteredLectures(filtered);
-  }, [searchTerm, area, stack, difficulty]);
+  }, [searchTerm, area, stack, difficulty, lectures]);
 
   return (
     <div

@@ -48,7 +48,7 @@ const FilterPriceButton: React.FC = () => {
               type={TextFieldType.Number}
               style={{ width: 100 }}
               value={price[0]}
-              onChange={(e) => setPrice(e.target.value, price[1])}
+              onChange={(e) => setPrice(parseInt(e.target.value), price[1])}
             />
             <Text
               typo={Typography.Size22}
@@ -60,7 +60,7 @@ const FilterPriceButton: React.FC = () => {
               type={TextFieldType.Number}
               style={{ width: 100 }}
               value={price[1]}
-              onChange={(e) => setPrice(price[0], e.target.value)}
+              onChange={(e) => setPrice(price[0], parseInt(e.target.value))}
             />
             <Text typo={Typography.Size22} style={{ marginLeft: 4 }}>
               원
