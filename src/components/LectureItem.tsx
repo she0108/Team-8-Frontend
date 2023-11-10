@@ -15,12 +15,14 @@ interface LectureItemProps {
 const LectureItem: React.FC<LectureItemProps> = ({ lecture }) => {
   return (
     <div style={{ display: "flex", flexDirection: "row", paddingBottom: 20 }}>
-      <div
-        id="image"
+      <img
+        src={lecture.thumbnail || "/images/default.png"}
+        alt="강의 썸네일"
         style={{
           width: 90,
           height: 90,
-          backgroundColor: "black",
+          objectFit: "cover",
+          borderRadius: 8,
           flexShrink: 0,
         }}
       />
@@ -36,11 +38,19 @@ const LectureItem: React.FC<LectureItemProps> = ({ lecture }) => {
         }}
       >
         <Text bold typo={Typography.Size16}>
-          [코드캠프] 부트캠프에서 만든 고농축 프론트엔드 코스
+          {lecture.title}
         </Text>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-          <Tag>HTML</Tag>
-          <Tag>HTML</Tag>
+          {lecture.keyword &&
+            lecture.keyword
+              .replace("[", "")
+              .replace("]", "")
+              .replaceAll("'", "")
+              .split(",")
+              .slice(0, 2)
+              .map((keyword: string, index: number) => (
+                <Tag key={index}>{keyword}</Tag>
+              ))}
           <Badge icon={StarFilledIcon} variant={TagBadgeVariant.Blue}>
             4.5 (999+)
           </Badge>
