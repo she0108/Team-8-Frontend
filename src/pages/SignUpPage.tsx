@@ -28,10 +28,18 @@ function SignUp() {
     console.log(id, password, passwordCheck);
   };
   return (
-    <div>
-      <VStack align="center" style={{ gap: "20px" }}>
+    <div
+      style={{
+        height: "90vh",
+        // overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <VStack align="center" justify="center" style={{ gap: "20px" }}>
         <Text typo={Typography.Size24}>서비스명</Text>
-        <VStack style={{ gap: "10px" }}>
+        {/* <VStack style={{ gap: "10px" }}> */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           <TextField
             placeholder="아이디"
             value={id}
@@ -49,7 +57,8 @@ function SignUp() {
             onChange={(e) => setPasswordCheck(e.target.value)}
             type="password"
           />
-        </VStack>
+        </div>
+        {/* </VStack> */}
         <Button
           text="회원가입"
           style={{ width: "100%" }}

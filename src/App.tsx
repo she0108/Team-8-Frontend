@@ -8,6 +8,7 @@ import SearchPage from "./pages/SearchPage";
 import DetailPage from "./pages/DetailPage";
 
 import MyPage from "./pages/MyPage";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/detail/:id" element={<DetailPage />} />
             <Route path="/mypage" element={<MyPage />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
       </Styled.Content>
     </Styled.Container>
