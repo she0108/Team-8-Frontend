@@ -1,0 +1,16 @@
+export default [
+  "HTML/CSS",
+  "Javascript",
+  "Spring",
+  "Springboot",
+  "Node.js",
+  "Java",
+  "Kotlin",
+  "C++",
+  "React",
+  "Python",
+  "Flutter",
+  "Android",
+  "Typescript",
+  "Next.js",
+];

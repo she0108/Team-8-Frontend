@@ -12,8 +12,13 @@ import {
   TextFieldSize,
   TextFieldType,
 } from "@channel.io/bezier-react";
+import areaArray from "./../constant/area";
+import stackArray from "./../constant/stack";
+import useFilterStore from "@/store/filterStore";
 
 const SearchPage: React.FC = () => {
+  const { area, setArea, stack, setStack, price, setPrice } = useFilterStore();
+
   return (
     <div
       style={{
@@ -54,9 +59,23 @@ const SearchPage: React.FC = () => {
         <FilterPriceButton />
       </div>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 8, flexShrink: 0 }}>
-        <Tag onDelete={() => {}}>HTML</Tag>
-        <Tag onDelete={() => {}}>Javascript</Tag>
-        <Tag onDelete={() => {}}>HTML</Tag>
+        {area.map(
+          (selected, index) =>
+            selected && (
+              <Tag onDelete={() => setArea(index)}>{areaArray[index]}</Tag>
+            )
+        )}
+        {stack.map(
+          (selected, index) =>
+            selected && (
+              <Tag onDelete={() => setStack(index)}>{stackArray[index]}</Tag>
+            )
+        )}
+        {(price[0] > 0 || price[1] < 999999) && (
+          <Tag onDelete={() => setPrice(0, 999999)}>
+            {price[0]} ~ {price[1]}
+          </Tag>
+        )}
       </div>
       <Divider />
       <div style={{ overflowY: "scroll", height: 450 }}>
