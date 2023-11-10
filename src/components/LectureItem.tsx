@@ -7,14 +7,19 @@ import {
   Typography,
 } from "@channel.io/bezier-react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 interface LectureItemProps {
   lecture: object;
 }
 
 const LectureItem: React.FC<LectureItemProps> = ({ lecture }) => {
+  const navigate = useNavigate();
   return (
-    <div style={{ display: "flex", flexDirection: "row", paddingBottom: 20 }}>
+    <div
+      onClick={() => navigate(`/detail/${lecture.lecture_id}`)}
+      style={{ display: "flex", flexDirection: "row", paddingBottom: 20 }}
+    >
       <img
         src={lecture.thumbnail || "/images/default.png"}
         alt="강의 썸네일"

@@ -18,7 +18,6 @@ import difficultyArray from "@/constant/difficulty";
 import useFilterStore from "@/store/filterStore";
 import FilterDifficultyButton from "@/components/FilterDifficultyButton";
 import { useEffect, useState } from "react";
-import { selectClasses } from "@mui/material";
 
 const SearchPage: React.FC = () => {
   const {
@@ -31,6 +30,7 @@ const SearchPage: React.FC = () => {
     price,
     setPrice,
   } = useFilterStore();
+  const [searchTerm, setSearchTerm] = useState("");
   const [lectures, setLectures] = useState([]);
   const [filteredLectures, setFilteredLectures] = useState([]);
 
@@ -55,6 +55,8 @@ const SearchPage: React.FC = () => {
 
   useEffect(() => {
     let filtered = [...lectures];
+    //검색어 필터링
+    filtered = filtered.filter((x) => x.title.includes(searchTerm));
     // 분야(keyword) 필터링
     const selectedArea = areaArray.filter((_, index) => area[index]);
     if (selectedArea.length > 0) {
@@ -78,7 +80,7 @@ const SearchPage: React.FC = () => {
       filtered = filtered.filter((x) => x.difficulty == difficulty);
     }
     setFilteredLectures(filtered);
-  }, [area, stack, difficulty]);
+  }, [searchTerm, area, stack, difficulty]);
 
   return (
     <div
@@ -104,6 +106,10 @@ const SearchPage: React.FC = () => {
           size={TextFieldSize.L}
           placeholder="강의 제목, 분야, 기술 스택 등"
           style={{ flexShrink: 0 }}
+          value={searchTerm}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
         />
       </div>
       <div
