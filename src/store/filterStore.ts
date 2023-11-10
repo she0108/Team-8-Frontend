@@ -18,7 +18,7 @@ interface FilterState {
 }
 
 const useFilterStore = create<FilterState>()((set) => ({
-  area: Array(9).fill(false),
+  area: Array(12).fill(false),
   setArea: (index: number) =>
     set((state: FilterState) => {
       const newArea = [...state.area];
@@ -26,7 +26,7 @@ const useFilterStore = create<FilterState>()((set) => ({
       return { area: newArea };
     }),
 
-  stack: Array(14).fill(false),
+  stack: Array(17).fill(false),
   setStack: (index: number) =>
     set((state: FilterState) => {
       const newStack = [...state.stack];
