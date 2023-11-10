@@ -72,7 +72,7 @@ function DetailPage() {
     setWritingBadReview("");
   };
   return (
-    <div style={{ width: "100vw" }}>
+    <div style={{ width: "100vw", paddingBottom: "100px" }}>
       <div style={{ width: "100%", height: "200px", backgroundColor: "grey" }}>
         thumbnail
         {/* <img src="" alt="" /> */}
