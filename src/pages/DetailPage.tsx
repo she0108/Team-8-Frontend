@@ -28,6 +28,7 @@ import {
 import { useParams } from "react-router-dom";
 import DetailItem from "@/components/DetailItem";
 import { useEffect, useState } from "react";
+import formatTime from "@/utils/formatTime";
 export type ReviewType = {
   review_id: number;
   star?: number;
@@ -115,7 +116,7 @@ function DetailPage() {
         <VStack style={{ gap: "10px" }}>
           <DetailItem>
             <Text style={{ width: "80px" }}>기술스택 </Text>
-            <div style={{ display: "flex", gap: "10px" }}>
+            <div style={{ display: "flex", gap: "10px", overflowX: "scroll" }}>
               {detailInfo?.stack?.map((s) => {
                 return <DetailTag item={s} />;
               })}
@@ -129,7 +130,7 @@ function DetailPage() {
           </DetailItem>
           <DetailItem>
             <Text style={{ width: "80px" }}>수강시간</Text>
-            <Text>{detailInfo?.running_time}</Text>
+            <Text>{formatTime(detailInfo?.running_time)}</Text>
           </DetailItem>
           <DetailItem>
             <Text style={{ width: "80px" }}>평점</Text>
@@ -230,6 +231,8 @@ function DetailPage() {
           {detailInfo?.review?.map((r) => {
             return (
               <ReviewContent
+                review_id={r.review_id}
+                star={r.star}
                 user_name={r.user_name}
                 good_review={r.good_review}
                 bad_review={r.bad_review}
