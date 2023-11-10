@@ -6,6 +6,15 @@ interface FilterState {
 
   stack: boolean[];
   setStack: (index: number) => void;
+
+  difficulty: number;
+  setDifficulty: (num: number) => void;
+
+  // time
+  // setTime
+
+  price: number[];
+  setPrice: (start: number, end: number) => void;
 }
 
 const useFilterStore = create<FilterState>()((set) => ({
@@ -22,8 +31,15 @@ const useFilterStore = create<FilterState>()((set) => ({
     set((state: FilterState) => {
       const newStack = [...state.stack];
       newStack[index] = !state.stack[index];
-      return { area: newStack };
+      return { stack: newStack };
     }),
+
+  difficulty: 0,
+  setDifficulty: (num: number) => set(() => ({ difficulty: num })),
+
+  price: [0, 999999],
+  setPrice: (start: number, end: number) =>
+    set(() => ({ price: [start, end] })),
 }));
 
 export default useFilterStore;

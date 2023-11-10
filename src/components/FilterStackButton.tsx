@@ -12,49 +12,49 @@ import {
 import { ChevronSmallDownIcon } from "@channel.io/bezier-icons";
 import useFilterStore from "@/store/filterStore";
 
-const FilterAreaButton: React.FC = () => {
-  const { area, setArea } = useFilterStore();
+const FilterStackButton: React.FC = () => {
+  const { stack, setStack } = useFilterStore();
 
   return (
     <Modal>
       <ModalTrigger>
         <Button
-          text="분야"
+          text="기술스택"
           colorVariant={ButtonColorVariant.MonochromeLight}
           rightContent={ChevronSmallDownIcon}
           onClick={() => {}}
         />
       </ModalTrigger>
       <ModalContent showCloseIcon={true}>
-        <ModalHeader title="분야" titleSize={ModalTitleSize.L} />
+        <ModalHeader title="기술 스택" titleSize={ModalTitleSize.L} />
         <ModalBody>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
             <Button
-              text="프론트엔드"
+              text="HTML"
               colorVariant={
-                area[0]
+                stack[0]
                   ? ButtonColorVariant.Blue
                   : ButtonColorVariant.MonochromeLight
               }
-              onClick={() => setArea(0)}
+              onClick={() => setStack(0)}
             />
             <Button
-              text="프론트엔드"
+              text="CSS"
               colorVariant={
-                area[1]
+                stack[1]
                   ? ButtonColorVariant.Blue
                   : ButtonColorVariant.MonochromeLight
               }
-              onClick={() => setArea(1)}
+              onClick={() => setStack(1)}
             />
             <Button
-              text="프론트엔드"
+              text="Javascript"
               colorVariant={
-                area[2]
+                stack[2]
                   ? ButtonColorVariant.Blue
                   : ButtonColorVariant.MonochromeLight
               }
-              onClick={() => setArea(2)}
+              onClick={() => setStack(2)}
             />
           </div>
         </ModalBody>
@@ -63,4 +63,4 @@ const FilterAreaButton: React.FC = () => {
   );
 };
 
-export default FilterAreaButton;
+export default FilterStackButton;
