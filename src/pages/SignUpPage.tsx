@@ -25,13 +25,29 @@ function SignUp() {
       setPasswordCheck("");
       return;
     }
-    console.log(id, password, passwordCheck);
+    // console.log(import.meta.env.VITE_API_BASE_URL);
+    fetch(`${import.meta.env.VITE_API_BASE_URL}auth/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_name: id,
+        password: password,
+      }),
+    }).then((response) => {
+      if (response.status <= 200) {
+        alert("회원가입이 완료되었습니다!");
+        window.location.href = "/login";
+      } else {
+        console.log(response.json());
+      }
+    });
   };
   return (
     <div
       style={{
         height: "90vh",
-        // overflow: "hidden",
         display: "flex",
         alignItems: "center",
       }}
