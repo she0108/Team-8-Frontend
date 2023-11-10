@@ -38,7 +38,7 @@ function Login() {
       .then((result) => {
         localStorage.setItem("user_id", result.user_id);
         localStorage.setItem("isLogin", "true");
-        window.location.href = "/home";
+        window.location.href = "/";
       });
   };
   return (

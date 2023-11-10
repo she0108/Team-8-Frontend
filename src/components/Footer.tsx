@@ -15,7 +15,7 @@ function Footer() {
       }}
     >
       <HStack style={{ justifyContent: "space-around" }}>
-        <Link to={"/home"}>
+        <Link to={"/"}>
           <div
             style={{
               display: "flex",
