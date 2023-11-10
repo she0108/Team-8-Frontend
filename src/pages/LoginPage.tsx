@@ -13,6 +13,33 @@ import { Link } from "react-router-dom";
 function Login() {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const submitLogin = (id: string, password: string) => {
+    fetch(
+      `${
+        import.meta.env.VITE_API_BASE_URL
+      }auth/login?user_name=${id}&password=${password}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        if (response.status > 200) {
+          // localStorage.setItem("isLogin", "true");
+          // window.location.href = "/home";
+          alert("로그인에 실패했습니다. \n다시 시도해주세요.");
+        }
+        return response.json();
+      })
+      .then((result) => {
+        localStorage.setItem("user_id", result.user_id);
+        localStorage.setItem("isLogin", "true");
+        window.location.href = "/home";
+      });
+  };
   return (
     <div
       style={{
@@ -46,8 +73,7 @@ function Login() {
             text="로그인"
             colorVariant={ButtonColorVariant.Blue}
             onClick={() => {
-              console.log(id);
-              console.log(password);
+              submitLogin(id, password);
             }}
           />
           <Link
