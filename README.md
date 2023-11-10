@@ -1,73 +1,29 @@
-# [Bezier Design System](https://github.com/channel-io/bezier-react/tree/main/packages/bezier-react) + [Vite](https://vitejs.dev)
+# Team 8
 
-Bezier Design System + Vite TypeScript React starter template.
+## 제품 설명
 
-## Usage
+지금 무슨 노래 듣고 계세요? 저 인프런의 자바스크립트요.
 
-```tsx
-import {
-  Icon,
-  IconSize,
-  Text,
-  Typography,
-  AlphaStack,
-} from "@channel.io/bezier-react";
-import { ChannelBtnSmileFilledIcon } from "@channel.io/bezier-icons";
+차가 너무 멋져서 그런데 이거 얼마짜리 차인가요? 3억이요.
+이렇게 좋은 차를 탈 수 있는 비결이 어떻게 되세요? 개발자입니다.
 
-function App() {
-  return (
-    <AlphaStack direction="vertical" spacing={8}>
-      <Icon
-        source={ChannelBtnSmileFilledIcon}
-        size={IconSize.XL}
-        color="bgtxt-blue-normal"
-      />
-      <Text typo={Typography.Size24} bold>
-        Bezier Design System + Vite
-      </Text>
-      <Text typo={Typography.Size16}>
-        See{" "}
-        <a
-          href="https://main--62bead1508281287d3c94d25.chromatic.com/?path=/story/intro--page"
-          target="_blank"
-          rel="noopener"
-        >
-          Storybook
-        </a>{" "}
-        For more information.
-      </Text>
-    </AlphaStack>
-  );
-}
-```
+스타트업 스트리트 역삼역에서 개발자가 되기 위해서, 개발자가 되고 나서도 공부는 필수! 그런데 어떤 강의를 봐야할까? 그 고민 우리가 해결해줄게
+사이트 별 강의 비교는 기본, 유저들의 솔직한 리뷰와 평점까지!
 
-## Installation
 
-### Requirements
+## 기능
++  회원가입 및 로그인
++  기술스택별, 분야별, 난이도별 강의 검색
++  강의 상제 정보 (난이도, 평점, 가격 등) 조회/비교
++  강의 별 장단점, 평점 리뷰 작성
 
-- nodeJS : `18` | `20`
-- pnpm : `8` _or you can use another package manager_
 
-### install dependencies
-
-```bash
-$ pnpm install
-```
 
 ### run development server
 
-```bash
-$ pnpm dev
-```
 
 ### build project
 
-```bash
-$ pnpm build
-```
 
 ## See More
 
-- [Bezier React Repo](https://github.com/channel-io/bezier-react/tree/main/packages/bezier-react)
-- [Bezier React Storybook](https://main--62bead1508281287d3c94d25.chromatic.com)
-- [Vite Docs](https://vitejs.dev/guide)
