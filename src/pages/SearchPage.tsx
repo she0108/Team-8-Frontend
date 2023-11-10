@@ -17,6 +17,8 @@ import stackArray from "@/constant/stack";
 import difficultyArray from "@/constant/difficulty";
 import useFilterStore from "@/store/filterStore";
 import FilterDifficultyButton from "@/components/FilterDifficultyButton";
+import { useEffect, useState } from "react";
+import { selectClasses } from "@mui/material";
 
 const SearchPage: React.FC = () => {
   const {
@@ -29,6 +31,54 @@ const SearchPage: React.FC = () => {
     price,
     setPrice,
   } = useFilterStore();
+  const [lectures, setLectures] = useState([]);
+  const [filteredLectures, setFilteredLectures] = useState([]);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}lecture/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.status <= 200) {
+          return response.json();
+        }
+      })
+      .then((result) => {
+        setLectures(result);
+        setFilteredLectures(result);
+        console.log(result);
+      });
+  }, []);
+
+  useEffect(() => {
+    let filtered = [...lectures];
+    // 분야(keyword) 필터링
+    const selectedArea = areaArray.filter((_, index) => area[index]);
+    if (selectedArea.length > 0) {
+      filtered = filtered.filter((x) => {
+        for (const s of selectedArea) {
+          if (x.keyword && x.keyword.includes(s)) return true;
+        }
+      });
+    }
+    // 기술스택 필터링
+    const selectedStack = stackArray.filter((_, index) => stack[index]);
+    if (selectedStack.length > 0) {
+      filtered = filtered.filter((x) => {
+        for (const s of selectedStack) {
+          if (x.stacks && x.stacks.includes(s)) return true;
+        }
+      });
+    }
+    // 난이도 필터링
+    if (difficulty != 0) {
+      filtered = filtered.filter((x) => x.difficulty == difficulty);
+    }
+    setFilteredLectures(filtered);
+  }, [area, stack, difficulty]);
 
   return (
     <div
@@ -76,13 +126,17 @@ const SearchPage: React.FC = () => {
         {area.map(
           (selected, index) =>
             selected && (
-              <Tag onDelete={() => setArea(index)}>{areaArray[index]}</Tag>
+              <Tag key={index} onDelete={() => setArea(index)}>
+                {areaArray[index]}
+              </Tag>
             )
         )}
         {stack.map(
           (selected, index) =>
             selected && (
-              <Tag onDelete={() => setStack(index)}>{stackArray[index]}</Tag>
+              <Tag key={index} onDelete={() => setStack(index)}>
+                {stackArray[index]}
+              </Tag>
             )
         )}
         {(price[0] > 0 || price[1] < 999999) && (
@@ -98,14 +152,9 @@ const SearchPage: React.FC = () => {
       </div>
       <Divider />
       <div style={{ overflowY: "scroll", height: 450 }}>
-        <LectureItem />
-        <LectureItem />
-        <LectureItem />
-        <LectureItem />
-        <LectureItem />
-        <LectureItem />
-        <LectureItem />
-        <LectureItem />
+        {filteredLectures.map((item, index) => (
+          <LectureItem key={index} lecture={item} />
+        ))}
       </div>
     </div>
   );

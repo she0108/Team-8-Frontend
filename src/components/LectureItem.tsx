@@ -8,7 +8,11 @@ import {
 } from "@channel.io/bezier-react";
 import React from "react";
 
-const LectureItem: React.FC = () => {
+interface LectureItemProps {
+  lecture: object;
+}
+
+const LectureItem: React.FC<LectureItemProps> = ({ lecture }) => {
   return (
     <div style={{ display: "flex", flexDirection: "row", paddingBottom: 20 }}>
       <div
