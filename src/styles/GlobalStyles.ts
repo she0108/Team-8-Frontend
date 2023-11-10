@@ -76,7 +76,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     height: 100%;
     margin: 0;
-    overflow: hidden;
+  //  overflow: hidden;
     background-color: ${({ foundation }) =>
       foundation?.theme?.["bg-white-normal"]};
     color-scheme: ${({ foundation }) =>

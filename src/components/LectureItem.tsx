@@ -7,13 +7,29 @@ import {
   Typography,
 } from "@channel.io/bezier-react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const LectureItem: React.FC = () => {
+interface LectureItemProps {
+  lecture: object;
+}
+
+const LectureItem: React.FC<LectureItemProps> = ({ lecture }) => {
+  const navigate = useNavigate();
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
-      <div
-        id="image"
-        style={{ width: 90, height: 90, backgroundColor: "black" }}
+    <div
+      onClick={() => navigate(`/detail/${lecture.lecture_id}`)}
+      style={{ display: "flex", flexDirection: "row", paddingBottom: 20 }}
+    >
+      <img
+        src={lecture.thumbnail || "/images/default.png"}
+        alt="강의 썸네일"
+        style={{
+          width: 90,
+          height: 90,
+          objectFit: "cover",
+          borderRadius: 8,
+          flexShrink: 0,
+        }}
       />
       <div
         style={{
@@ -22,18 +38,26 @@ const LectureItem: React.FC = () => {
           justifyContent: "space-between",
           alignItems: "start",
           overflow: "hidden",
-          padding: 8,
+          padding: 6,
+          paddingLeft: 10,
         }}
       >
-        <Text bold typo={Typography.Size18} style={{ marginBottom: 6 }}>
-          [코드캠프] 부트캠프에서 만든 고농축 프론트엔드 코스
+        <Text bold typo={Typography.Size16}>
+          {lecture.title}
         </Text>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-          <Tag>HTML</Tag>
-          <Tag>HTML</Tag>
-          <Tag>HTML</Tag>
+          {lecture.keyword &&
+            lecture.keyword
+              .replace("[", "")
+              .replace("]", "")
+              .replaceAll("'", "")
+              .split(",")
+              .slice(0, 2)
+              .map((keyword: string, index: number) => (
+                <Tag key={index}>{keyword}</Tag>
+              ))}
           <Badge icon={StarFilledIcon} variant={TagBadgeVariant.Blue}>
-            4.5
+            4.5 (999+)
           </Badge>
         </div>
       </div>

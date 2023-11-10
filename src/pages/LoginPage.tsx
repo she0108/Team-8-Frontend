@@ -13,8 +13,42 @@ import { Link } from "react-router-dom";
 function Login() {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const submitLogin = (id: string, password: string) => {
+    fetch(
+      `${
+        import.meta.env.VITE_API_BASE_URL
+      }auth/login?user_name=${id}&password=${password}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        if (response.status > 200) {
+          // localStorage.setItem("isLogin", "true");
+          // window.location.href = "/home";
+          alert("로그인에 실패했습니다. \n다시 시도해주세요.");
+        }
+        return response.json();
+      })
+      .then((result) => {
+        localStorage.setItem("user_id", result.user_id);
+        localStorage.setItem("isLogin", "true");
+        window.location.href = "/home";
+      });
+  };
   return (
-    <div>
+    <div
+      style={{
+        height: "90vh",
+        overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       <VStack
         justify="center"
         align="center"
@@ -23,12 +57,12 @@ function Login() {
         <Text typo={Typography.Size24}>서비스명</Text>
         <VStack style={{ gap: "10px" }}>
           <TextField
-            placeholder="아이디를 입력해주세요"
+            placeholder="아이디"
             value={id}
             onChange={(e) => setId(e.target.value)}
           />
           <TextField
-            placeholder="비밀번호를 입력해주세요"
+            placeholder="비밀번호"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -39,8 +73,7 @@ function Login() {
             text="로그인"
             colorVariant={ButtonColorVariant.Blue}
             onClick={() => {
-              console.log(id);
-              console.log(password);
+              submitLogin(id, password);
             }}
           />
           <Link

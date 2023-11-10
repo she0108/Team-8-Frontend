@@ -11,18 +11,18 @@ import {
 } from "@channel.io/bezier-react";
 import { ChevronSmallDownIcon } from "@channel.io/bezier-icons";
 import useFilterStore from "@/store/filterStore";
-import areaArray from "./../constant/area";
+import stackArray from "./../constant/stack";
 
-const FilterAreaButton: React.FC = () => {
-  const { area, setArea } = useFilterStore();
+const FilterStackButton: React.FC = () => {
+  const { stack, setStack } = useFilterStore();
 
   return (
     <Modal>
       <ModalTrigger>
         <Button
-          text="분야"
+          text="기술스택"
           colorVariant={
-            area.every((x) => !x)
+            stack.every((x) => !x)
               ? ButtonColorVariant.MonochromeLight
               : ButtonColorVariant.Blue
           }
@@ -31,18 +31,18 @@ const FilterAreaButton: React.FC = () => {
         />
       </ModalTrigger>
       <ModalContent showCloseIcon={true}>
-        <ModalHeader title="분야" titleSize={ModalTitleSize.L} />
+        <ModalHeader title="기술 스택" titleSize={ModalTitleSize.L} />
         <ModalBody>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-            {areaArray.map((item, index) => (
+            {stackArray.map((item, index) => (
               <Button
                 text={item}
                 colorVariant={
-                  area[index]
+                  stack[index]
                     ? ButtonColorVariant.Blue
                     : ButtonColorVariant.MonochromeLight
                 }
-                onClick={() => setArea(index)}
+                onClick={() => setStack(index)}
               />
             ))}
           </div>
@@ -52,4 +52,4 @@ const FilterAreaButton: React.FC = () => {
   );
 };
 
-export default FilterAreaButton;
+export default FilterStackButton;

@@ -25,13 +25,37 @@ function SignUp() {
       setPasswordCheck("");
       return;
     }
-    console.log(id, password, passwordCheck);
+    // console.log(import.meta.env.VITE_API_BASE_URL);
+    fetch(`${import.meta.env.VITE_API_BASE_URL}auth/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_name: id,
+        password: password,
+      }),
+    }).then((response) => {
+      if (response.status <= 200) {
+        alert("회원가입이 완료되었습니다!");
+        window.location.href = "/login";
+      } else {
+        console.log(response.json());
+      }
+    });
   };
   return (
-    <div>
-      <VStack align="center" style={{ gap: "20px" }}>
+    <div
+      style={{
+        height: "90vh",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <VStack align="center" justify="center" style={{ gap: "20px" }}>
         <Text typo={Typography.Size24}>서비스명</Text>
-        <VStack style={{ gap: "10px" }}>
+        {/* <VStack style={{ gap: "10px" }}> */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           <TextField
             placeholder="아이디"
             value={id}
@@ -49,7 +73,8 @@ function SignUp() {
             onChange={(e) => setPasswordCheck(e.target.value)}
             type="password"
           />
-        </VStack>
+        </div>
+        {/* </VStack> */}
         <Button
           text="회원가입"
           style={{ width: "100%" }}
