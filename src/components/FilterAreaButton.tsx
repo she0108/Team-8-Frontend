@@ -11,6 +11,7 @@ import {
 } from "@channel.io/bezier-react";
 import { ChevronSmallDownIcon } from "@channel.io/bezier-icons";
 import useFilterStore from "@/store/filterStore";
+import areaArray from "./../constant/area";
 
 const FilterAreaButton: React.FC = () => {
   const { area, setArea } = useFilterStore();
@@ -20,7 +21,11 @@ const FilterAreaButton: React.FC = () => {
       <ModalTrigger>
         <Button
           text="분야"
-          colorVariant={ButtonColorVariant.MonochromeLight}
+          colorVariant={
+            area.every((x) => !x)
+              ? ButtonColorVariant.MonochromeLight
+              : ButtonColorVariant.Blue
+          }
           rightContent={ChevronSmallDownIcon}
           onClick={() => {}}
         />
@@ -29,33 +34,17 @@ const FilterAreaButton: React.FC = () => {
         <ModalHeader title="분야" titleSize={ModalTitleSize.L} />
         <ModalBody>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-            <Button
-              text="프론트엔드"
-              colorVariant={
-                area[0]
-                  ? ButtonColorVariant.Blue
-                  : ButtonColorVariant.MonochromeLight
-              }
-              onClick={() => setArea(0)}
-            />
-            <Button
-              text="프론트엔드"
-              colorVariant={
-                area[1]
-                  ? ButtonColorVariant.Blue
-                  : ButtonColorVariant.MonochromeLight
-              }
-              onClick={() => setArea(1)}
-            />
-            <Button
-              text="프론트엔드"
-              colorVariant={
-                area[2]
-                  ? ButtonColorVariant.Blue
-                  : ButtonColorVariant.MonochromeLight
-              }
-              onClick={() => setArea(2)}
-            />
+            {areaArray.map((item, index) => (
+              <Button
+                text={item}
+                colorVariant={
+                  area[index]
+                    ? ButtonColorVariant.Blue
+                    : ButtonColorVariant.MonochromeLight
+                }
+                onClick={() => setArea(index)}
+              />
+            ))}
           </div>
         </ModalBody>
       </ModalContent>

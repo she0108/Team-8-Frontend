@@ -11,6 +11,7 @@ import {
 } from "@channel.io/bezier-react";
 import { ChevronSmallDownIcon } from "@channel.io/bezier-icons";
 import useFilterStore from "@/store/filterStore";
+import stackArray from "./../constant/stack";
 
 const FilterStackButton: React.FC = () => {
   const { stack, setStack } = useFilterStore();
@@ -20,7 +21,11 @@ const FilterStackButton: React.FC = () => {
       <ModalTrigger>
         <Button
           text="기술스택"
-          colorVariant={ButtonColorVariant.MonochromeLight}
+          colorVariant={
+            stack.every((x) => !x)
+              ? ButtonColorVariant.MonochromeLight
+              : ButtonColorVariant.Blue
+          }
           rightContent={ChevronSmallDownIcon}
           onClick={() => {}}
         />
@@ -29,33 +34,17 @@ const FilterStackButton: React.FC = () => {
         <ModalHeader title="기술 스택" titleSize={ModalTitleSize.L} />
         <ModalBody>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-            <Button
-              text="HTML"
-              colorVariant={
-                stack[0]
-                  ? ButtonColorVariant.Blue
-                  : ButtonColorVariant.MonochromeLight
-              }
-              onClick={() => setStack(0)}
-            />
-            <Button
-              text="CSS"
-              colorVariant={
-                stack[1]
-                  ? ButtonColorVariant.Blue
-                  : ButtonColorVariant.MonochromeLight
-              }
-              onClick={() => setStack(1)}
-            />
-            <Button
-              text="Javascript"
-              colorVariant={
-                stack[2]
-                  ? ButtonColorVariant.Blue
-                  : ButtonColorVariant.MonochromeLight
-              }
-              onClick={() => setStack(2)}
-            />
+            {stackArray.map((item, index) => (
+              <Button
+                text={item}
+                colorVariant={
+                  stack[index]
+                    ? ButtonColorVariant.Blue
+                    : ButtonColorVariant.MonochromeLight
+                }
+                onClick={() => setStack(index)}
+              />
+            ))}
           </div>
         </ModalBody>
       </ModalContent>
